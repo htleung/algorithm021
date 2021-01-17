@@ -83,7 +83,8 @@ c)组合问题，动态规划，参考[零钱兑换II](https://leetcode-cn.com/p
 * [零钱兑换II](https://leetcode-cn.com/problems/coin-change-2/)  
 	凑成指定金额的方法数。组合问题，动态规划状态记录矩阵dp[i][j]使用硬币[0..i]凑成金额j的方法数。
 	递推方程dp[i] = dp[i-1][j] + dp[i][j-coins[i]]
-### 打家劫舍
+### 打家劫舍  
+小偷要偷以某种形式相连的一群房子，限制条件是相连的房子不能一起偷。  
 * [打家劫舍I](https://leetcode-cn.com/problems/house-robber/)  
 	房间链式相连，递推方程dp[i]=max(dp[i-1](不偷第i个房间)，dp[i-2]+nums[i](偷第i个房间))
 * [打家劫舍II](https://leetcode-cn.com/problems/house-robber-ii/)  
@@ -107,8 +108,8 @@ c)组合问题，动态规划，参考[零钱兑换II](https://leetcode-cn.com/p
 		**dp[i][0]: 在第i天不持有股票所获得的收益**  
 		**dp[i][1]: 在第i天持有股票所获得的收益**  
 	动态规划基本递推式，后面的递推都是这个的变式：  
-		**dp[i][0] = max(dp[i-1][0](不操作，维持在第i-1天时不持有情况的状态不变)，在第i天买入股票的收益计算式)**  
-		**dp[i][1] = max(dp[i-1][1](不操作，维持在第i-1天时持有情况的状态不变)，在第i天卖出股票的收益计算式)**    
+		**dp[i][0] = max(dp[i-1][0]（不操作，维持在第i-1天时不持有情况的状态不变），在第i天买入股票的收益计算式)**  
+		**dp[i][1] = max(dp[i-1][1]（不操作，维持在第i-1天时持有情况的状态不变），在第i天卖出股票的收益计算式)**    
 - [买卖股票的最佳时期I](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  
 	只允许完成一次交易。  
 	根据上述递推式，写出在每种情况下的收益递推式：
@@ -187,4 +188,18 @@ c)组合问题，动态规划，参考[零钱兑换II](https://leetcode-cn.com/p
 		$$dp[i][0] = max(dp[i-1][0], dp[i-1][1]+price[i]-fee)$$  
 	初始化dp[0][1]=-price[0]
 		
-### 不同路径
+### 不同路径  
+给定一个矩阵，按照一定规则从起点走到终点的路径数。  
+- [不同路径I](https://leetcode-cn.com/problems/unique-paths/)  
+	要求从左上角走到右下角的路径数，每次只能向下或者向右走。  
+	状态矩阵**dp[i][j]**记录从左上角走到位置[i,j]的所有路径数。  
+	递推逻辑：计算**dp[i][j]**时，因为上一步只能是从上面或者左边走到位置[i,j]，因此从左上角走到[i,j]的路径数就是从左上角走到上面位置和从左上角走到左边位置的路径数和  
+	递推式：  
+		$$dp[i][j] = dp[i-1][j] + dp[i][j-1]$$  
+
+- [不同路径II](https://leetcode-cn.com/problems/unique-paths-ii/)  
+	在第一题的基础上，矩阵中存在障碍物，求从左上角走到右下角的路径数。  
+	状态矩阵含义相同，递推逻辑需要加入考虑障碍物的情况，如果位置[i,j]有障碍物，则该位置不可达，dp[i][j]=0  
+
+- [不同路径III](https://leetcode-cn.com/problems/unique-paths-iii/)  
+	上下左右四个方向都可以走，给定某个起点和终点，以及障碍物的位置，求从起点走到终点的路径数。使用DFS回溯。
