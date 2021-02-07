@@ -75,66 +75,66 @@ class Trie:
 并查集模板：
 - 模板一：list实现  
 ```python
-	def init(self, p):
-		p = [i for i in range(len(n))]
-	def unionSet(self, p, x, y):
-		p1 = self.parent(p, x)
-		p2 = self.parent(p, y)
-		p[p1] = p2
-	def parent(self, p, x):
-		root = p[x]
-		while root!=p[root]:
-			root = p[root]
-		while x!=p[x]: #路径压缩，找到x所在集合的代表后，对路径进行压缩，路径上的每个节点的指针都指向集合代表
-			temp = x
-			x = p[x]
-			p[temp] = root
-		return root		
+def init(self, p):
+	p = [i for i in range(len(n))]
+def unionSet(self, p, x, y):
+	p1 = self.parent(p, x)
+	p2 = self.parent(p, y)
+	p[p1] = p2
+def parent(self, p, x):
+	root = p[x]
+	while root!=p[root]:
+		root = p[root]
+	while x!=p[x]: #路径压缩，找到x所在集合的代表后，对路径进行压缩，路径上的每个节点的指针都指向集合代表
+		temp = x
+		x = p[x]
+		p[temp] = root
+	return root		
 ```
 
 - 模板二：dict实现  
 ```python
-	def init(self,p):
-		p = {}
-	def unionSet(self, p, x, y):
-		p1 = self.parent(p, x)
-		p2 = self.parent(p, y)
-		p[p1] = p2
-	def parent(self, p, x):
-		root = p.setdefault(x, x)
-		while root!=p[root]:
-			root = p[root]
-		while x!=p[x]:
-			temp = x
-			x = p[x]
-			p[temp] = root
-		return root
+def init(self,p):
+	p = {}
+def unionSet(self, p, x, y):
+	p1 = self.parent(p, x)
+	p2 = self.parent(p, y)
+	p[p1] = p2
+def parent(self, p, x):
+	root = p.setdefault(x, x)
+	while root!=p[root]:
+		root = p[root]
+	while x!=p[x]:
+		temp = x
+		x = p[x]
+		p[temp] = root
+	return root
 ``` 
 
 ## 高级搜索  
 ### n皇后，数独问题模板  
 ```python
-	def solve():
-		result = [] #记录所有可行的解
-		validset = set() #用set来记录当前状态，用于检查冲突
-		DFS(level,curr_state) #DFS，逐层(一层可以代表一行(n皇后)，一个格子(数独)等等)深度优先搜索，可选解的个数少的优先探索，可以让生成树更小
-	def DFS(level, curr_state):
-		#递归终止条件
-		if curr_state satisfy condition:
-			print_result()
-		#探索下一层的分支
-		for branch in level:
-			if not valid: #检查冲突，如果存在冲突，则放弃当前分支的搜索，继续搜索下一个分支(剪枝)
-				continue
-			#如果没有冲突，用当前分支的值更新状态，继续下一层的探索
-			update_validset()
-			update_curr_state()
-			DFS(level+1, curr_state)
-			#回溯，恢复状态
-			reset_validset()
-			reset_curr_state()
-	def print_result():
-		pass
+def solve():
+	result = [] #记录所有可行的解
+	validset = set() #用set来记录当前状态，用于检查冲突
+	DFS(level,curr_state) #DFS，逐层(一层可以代表一行(n皇后)，一个格子(数独)等等)深度优先搜索，可选解的个数少的优先探索，可以让生成树更小
+def DFS(level, curr_state):
+	#递归终止条件
+	if curr_state satisfy condition:
+		print_result()
+	#探索下一层的分支
+	for branch in level:
+		if not valid: #检查冲突，如果存在冲突，则放弃当前分支的搜索，继续搜索下一个分支(剪枝)
+			continue
+		#如果没有冲突，用当前分支的值更新状态，继续下一层的探索
+		update_validset()
+		update_curr_state()
+		DFS(level+1, curr_state)
+		#回溯，恢复状态
+		reset_validset()
+		reset_curr_state()
+def print_result():
+	pass
 ```
 
 ### 双向BFS  
@@ -205,15 +205,15 @@ def twowayBFS(nodes):
 ### A*搜索  
 代码模板  
 ```python
-	def AstarSearch(graph, start, end):
-		pq = collections.priority_queue()
-		pq.append([start])
-		visited.add(start)
-		while pq:
-			node = pq.pop()
-			visited.add(node)
-			process(node)
-			nodes = generate_related_nodes(node)
-			unvisited = [node for node in nodes if node not in visited]
-			pq.push(unvisited)
+def AstarSearch(graph, start, end):
+	pq = collections.priority_queue()
+	pq.append([start])
+	visited.add(start)
+	while pq:
+		node = pq.pop()
+		visited.add(node)
+		process(node)
+		nodes = generate_related_nodes(node)
+		unvisited = [node for node in nodes if node not in visited]
+		pq.push(unvisited)
 ```
